@@ -995,38 +995,56 @@ function updateLocation() {
   );
 }
 
-updateLocation();
-geoRefresh.addEventListener('click', updateLocation);
+
+if (geoDisplay && geoRefresh) {
+    updateLocation();
+    geoRefresh.addEventListener('click', updateLocation);
+}
+
+
 
 /* ============================================
    CERTIFICATION LIGHTBOX
 ============================================ */
+
 const lightbox = document.getElementById('certLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const closeLightbox = document.querySelector('.lightbox-close');
 
-document.querySelectorAll('.cert-link-btn').forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const imgSrc = btn.getAttribute('data-cert-img');
-    if (imgSrc) {
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('open');
-    }
-  });
+document.querySelectorAll('.cert-link').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const imgSrc = btn.getAttribute('data-cert-img');
+
+        if (imgSrc && lightbox && lightboxImg) {
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('open');
+        } else if (imgSrc) {
+            window.open(imgSrc, '_blank', 'noopener,noreferrer');
+        }
+    });
 });
 
-closeLightbox.addEventListener('click', () => {
-  lightbox.classList.remove('open');
-});
+if (closeLightbox && lightbox) {
+    closeLightbox.addEventListener('click', () => {
+        lightbox.classList.remove('open');
+    });
+}
 
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) lightbox.classList.remove('open');
-});
+if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('open');
+        }
+    });
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') lightbox.classList.remove('open');
-});
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            lightbox.classList.remove('open');
+        }
+    });
+}
 
 /* ============================================
    PROFILE CARD 3D TILT
