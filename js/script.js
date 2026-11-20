@@ -790,7 +790,13 @@ themeToggle.addEventListener('click', () => {
    TYPING EFFECT
 ============================================ */
 const typingElement = document.getElementById('typing');
-const words = ['Data Scientist', 'AI Enthusiast', 'Machine Learning Engineer', 'Data Analyst', 'Tech Explorer', 'Student'];
+const words = [
+    'Data Science Student',
+    'Tech Enthusiast',
+    'Data Analytics Learner',
+    'Creative Problem Solver',
+    'Tech Explorer'
+];
 let wordIndex = 0;
 let charIndex = 0;
 let deleting = false;
@@ -943,21 +949,27 @@ contactForm.addEventListener('submit', (e) => {
       zh: '❌ 邮箱格式无效。',
       ja: '❌ メールアドレスが無効です。'
     };
-    formMessage.textContent = msgs[currentLang] || '❌ Please enter a valid email.';
-    return;
-  }
+    // Prepare the email
+const subject = encodeURIComponent(
+    'Portfolio Message from ' + name
+);
 
-  formMessage.className = 'mt-3 success';
-  const msgs = {
-    ar: '✅ تم إرسال الرسالة بنجاح! (عرض توضيحي)',
-    ms: '✅ Mesej berjaya dihantar! (Demo)',
-    es: '✅ ¡Mensaje enviado con éxito! (Demostración)',
-    fr: '✅ Message envoyé avec succès ! (Démo)',
-    zh: '✅ 消息发送成功！ (演示)',
-    ja: '✅ メッセージが正常に送信されました！ (デモ)'
-  };
-  formMessage.textContent = msgs[currentLang] || '✅ Message sent successfully! (Demo)';
-  contactForm.reset();
+const body = encodeURIComponent(
+    message +
+    '\n\nName: ' + name +
+    '\nEmail: ' + email
+);
+
+// Inform the visitor
+formMessage.className = 'mt-3 success';
+
+formMessage.textContent =
+    'Your email application will open. Please click Send to complete your message.';
+
+// Open email application
+window.location.href =
+    'mailto:beeynmuhd@gmail.com?subject=' +
+    subject + '&body=' + body;
 });
 
 /* ============================================
