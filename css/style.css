@@ -594,7 +594,7 @@ ul {
   font-size: 0.85rem;
   font-weight: 600;
 }
-.cert-link-btn {
+.cert-link {
   background: transparent;
   border: none;
   color: var(--primary);
@@ -607,7 +607,7 @@ ul {
   transition: 0.3s;
   font-size: 0.9rem;
 }
-.cert-link-btn:hover {
+.cert-link:hover {
   color: var(--secondary);
 }
 
