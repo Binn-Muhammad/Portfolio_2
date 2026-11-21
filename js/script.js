@@ -952,28 +952,30 @@ contactForm.addEventListener('submit', (e) => {
     formMessage.textContent = msgs[currentLang] || '❌ Please enter a valid email.';
     return;
 }
+// Send message through Formspree
+formMessage.className = 'mt-3';
+formMessage.textContent = 'Sending your message...';
 
-// Prepare the email
-const subject = encodeURIComponent(
-    'Portfolio Message from ' + name
-);
-
-const body = encodeURIComponent(
-    message +
-    '\n\nName: ' + name +
-    '\nEmail: ' + email
-);
-
-// Inform the visitor
-formMessage.className = 'mt-3 success';
-
-formMessage.textContent =
-    'Your email application will open. Please click Send to complete your message.';
-
-// Open email application
-window.location.href =
-    'mailto:beeynmuhd@gmail.com?subject=' +
-    subject + '&body=' + body;
+fetch(contactForm.action, {
+    method: 'POST',
+    body: new FormData(contactForm),
+    headers: {
+        'Accept': 'application/json'
+    }
+})
+.then(response => {
+    if (response.ok) {
+        formMessage.className = 'mt-3 success';
+        formMessage.textContent = '✅ Message sent successfully!';
+        contactForm.reset();
+    } else {
+        throw new Error('Submission failed');
+    }
+})
+.catch(() => {
+    formMessage.className = 'mt-3 error';
+    formMessage.textContent = '❌ Unable to send message. Please try again.';
+});
 });
 
 /* ============================================
