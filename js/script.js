@@ -949,7 +949,11 @@ contactForm.addEventListener('submit', (e) => {
       zh: '❌ 邮箱格式无效。',
       ja: '❌ メールアドレスが無効です。'
     };
-    // Prepare the email
+    formMessage.textContent = msgs[currentLang] || '❌ Please enter a valid email.';
+    return;
+}
+
+// Prepare the email
 const subject = encodeURIComponent(
     'Portfolio Message from ' + name
 );
