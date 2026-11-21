@@ -658,10 +658,10 @@ SKILLS
                 </div>
 
                 <div class="col-lg-7 reveal">
-                    <form class="contact-form" id="contactForm">
-                        <input type="text" class="form-control mb-3" placeholder="Your Name" id="contactName" required data-i18n-placeholder="contact.formName" />
-                        <input type="email" class="form-control mb-3" placeholder="Your Email" id="contactEmail" required data-i18n-placeholder="contact.formEmail" />
-                        <textarea class="form-control mb-3" rows="5" placeholder="Your Message" id="contactMessage" required data-i18n-placeholder="contact.formMessage"></textarea>
+                   <form class="contact-form" id="contactForm" action="https://formspree.io/f/meaglgyr" method="POST">
+                        <input type="text" class="form-control mb-3" placeholder="Your Name" id="contactName" name="name" required data-i18n-placeholder="contact.formName" />
+                        <input type="email" class="form-control mb-3" placeholder="Your Email" 	id="contactEmail" name="email" required data-i18n-placeholder="contact.formEmail" />
+                        <textarea class="form-control mb-3" rows="5" placeholder="Your Message" id="contactMessage" name="message" required data-i18n-placeholder="contact.formMessage"></textarea>
                         <button class="btn primary-btn w-100" type="submit" data-i18n="contact.formBtn">Send Message</button>
                         <p id="formMessage" class="mt-3"></p>
                     </form>
